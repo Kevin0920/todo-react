@@ -3,7 +3,15 @@ import React from 'react';
 class ShowList extends React.Component {
 
     state = {
-        editStatus: false
+        editStatus: false,
+        // textUpdate: this.props.term
+    }
+
+    componentDidMount() {
+        console.log('comp mount ', this.props);
+        this.setState({
+            newTestArr: this.props.lists
+        })
     }
 
     onEditing = event => {
@@ -19,6 +27,14 @@ class ShowList extends React.Component {
                 editStatus: false
             })
         }
+    }
+
+    onEditChange = event => {
+        let newText = event.target.value;
+        this.setState({
+            newTestArr: newText
+        })
+
     }
     
     render() {
@@ -40,37 +56,36 @@ class ShowList extends React.Component {
                         {
                             this.props.lists.map((list, index) => {
                                 return (
-                                    <ul className="list-group" key={index}>
-                                        <li 
-                                        className="list-group-item"
-                                        style={viewStyle}
-                                        >
-                                            <input 
-                                                type="checkbox"
-                                                style={{
-                                                    fontSize: "x=large"
-                                                }}
-                                            />
-                                            {list}
+                                    <div>
+                                        <ul className="list-group">
+                                            <li 
+                                            className="list-group-item"
+                                            key={index}
+                                            style={viewStyle}
+                                            >
+                                                <input 
+                                                    type="checkbox"
+                                                    style={{
+                                                        fontSize: "x=large"
+                                                    }}
+                                                />
+                                                {this.state.newTestArr}
 
-                                            <button 
-                                                type="button" 
-                                                className="btn btn-outline-danger"
-                                                onClick={() => this.props.removeList(list)}
-                                            >X</button>
-                                        </li>
-                                        <li
-                                        className="list-group-item"
-                                        >
-                                            <input
-                                                style={editStyle}
-                                                type="text"
-                                                value={this.props.term}
-                                                onKeyDown={this.onEditingDone}
-                                                // onChange={}
-                                            />
-                                        </li>
-                                    </ul>
+                                                <button 
+                                                    type="button" 
+                                                    className="btn btn-outline-danger"
+                                                    onClick={() => this.props.removeList(list)}
+                                                >X</button>
+                                            </li>
+                                        </ul>
+                                        <input
+                                            style={editStyle}
+                                            type="text"
+                                            value={this.state.newTestArr}
+                                            onKeyDown={this.onEditingDone}
+                                            onChange={this.onEditChange}
+                                        />
+                                    </div>
                                 )
                             })
                         }

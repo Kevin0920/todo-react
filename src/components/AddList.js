@@ -62,7 +62,6 @@ class AddList extends React.Component {
                             name="" 
                             placeholder="add list.."
                             value={this.state.term}
-                            // term={this.state.term}
                             onChange={(e) => {this.onInputChange(e.target.value)}}
                             />
                             <button 
