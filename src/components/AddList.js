@@ -54,8 +54,7 @@ class AddList extends React.Component {
         return (
             <div className="container">
                 <div className="">
-                    <div className="">
-                        <label>Add List</label>
+                    <div className="input-group mb-3">
                         <input 
                             className="form-control"
                             type="text" 
@@ -64,10 +63,12 @@ class AddList extends React.Component {
                             value={this.state.term}
                             onChange={(e) => {this.onInputChange(e.target.value)}}
                             />
-                            <button 
-                                className="btn btn-primary"
-                                onClick={() => {this.addList(this.state.term)}}
-                                type="submit">Submit</button>
+                            <div className="input-group-append">
+                                <button 
+                                    className="btn btn-primary"
+                                    onClick={() => {this.addList(this.state.term)}}
+                                    type="submit">Submit</button>
+                            </div>
                     </div>
                 </div>
             <ShowList 

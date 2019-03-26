@@ -4,7 +4,7 @@ class ShowList extends React.Component {
 
     state = {
         editStatus: false,
-        // textUpdate: this.props.term
+        newText: this.props.term
     }
 
     componentDidMount() {
@@ -24,13 +24,15 @@ class ShowList extends React.Component {
 
         if (event.keyCode === 13) {
             this.setState({
-                editStatus: false
+                editStatus: false,
+                newText: ''
             })
         }
     }
 
     onEditChange = event => {
         let newText = event.target.value;
+        console.log(newText);
         this.setState({
             newTestArr: newText
         })
@@ -81,7 +83,7 @@ class ShowList extends React.Component {
                                         <input
                                             style={editStyle}
                                             type="text"
-                                            value={this.state.newTestArr}
+                                            value={this.state.newText}
                                             onKeyDown={this.onEditingDone}
                                             onChange={this.onEditChange}
                                         />
