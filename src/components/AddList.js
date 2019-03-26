@@ -1,5 +1,6 @@
 import React from 'react';
 import ShowList from './ShowList';
+import Alert from './Alert';
 
 class AddList extends React.Component {
     state = {
@@ -24,6 +25,8 @@ class AddList extends React.Component {
     // };
 
     addList = term => {
+        console.log(term);
+
         let listArr = this.state.lists;
         listArr.push(term);
 
@@ -33,36 +36,46 @@ class AddList extends React.Component {
         })
     }
 
+    removeList = (index) => {
+        // console.log(index);
+        // copy the old state 
+        const newList = [...this.state.lists].filter(list => {
+            return list !== index;
+        });
+        // newList.splice(index, 1); 
 
-
-    removeList = (listIndex) => {
-        console.log(listIndex);
-        // let list = lists[listIndex];
-        // lists.splice(listIndex, 1);
-        // // remove a list is done => true
-        // list.done = !this.state.done;
-        // list.done ? lists.push(list) : lists.unshift(list);
-        // this.setState({ lists });
+        this.setState({
+            lists: newList
+        });
     };
+    
 
     render() {
         return (
-            <div className="ui container">
-                <div className="field">
-                    <label>Add List</label>
-                    <input 
-                        type="text" 
-                        name="" 
-                        placeholder="add list.."
-                        value={this.state.term}
-                        onChange={(e) => {this.onInputChange(e.target.value)}}
-                        />
+            <div className="container">
+                <div className="">
+                    <div className="">
+                        <label>Add List</label>
+                        <input 
+                            className="form-control"
+                            type="text" 
+                            name="" 
+                            placeholder="add list.."
+                            value={this.state.term}
+                            // term={this.state.term}
+                            onChange={(e) => {this.onInputChange(e.target.value)}}
+                            />
+                            <button 
+                                className="btn btn-primary"
+                                onClick={() => {this.addList(this.state.term)}}
+                                type="submit">Submit</button>
+                    </div>
                 </div>
-                <button 
-                    className="ui button"
-                    onClick={() => {this.addList(this.state.term)}}
-                    type="submit">Submit</button>
-            <ShowList removeList={this.removeList} lists={this.state.lists}/>
+            <ShowList 
+                removeList={this.removeList} 
+                lists={this.state.lists}
+                term={this.state.term}
+                />
             </div>
         )
     };
