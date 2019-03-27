@@ -42,6 +42,19 @@ class App extends React.Component {
         
     };
 
+    onRemoveItem = (id) => {
+        const remainder = this.state.data.filter(data => {
+            if(data._id != id) {
+                return data;
+            }
+        });
+        this.setState({
+            data: remainder
+        });
+    };
+
+
+
     render() {
         return (
             <main>
@@ -52,7 +65,10 @@ class App extends React.Component {
                         onAddToDo={this.onAddToDo}
                         listObj={this.state.listObj}
                         />
-                    <TodoList lists={this.state.data}/>
+                    <TodoList 
+                    lists={this.state.data}
+                    onRemoveItem={this.onRemoveItem}
+                    />
                 </div>
             </main>
         )

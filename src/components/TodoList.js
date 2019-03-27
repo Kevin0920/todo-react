@@ -1,12 +1,12 @@
 import React from 'react';
 import Todo from './Todo';
 
-const TodoList = ({ lists }) => {
-    // console.log(lists);
+const TodoList = ({ lists, onRemoveItem }) => {
+    console.log(onRemoveItem);
 
     const listDetail = lists.map(list => {
         return (
-            <Todo key={list._id} list={list} />
+            <Todo key={list._id} list={list} onRemoveItem={onRemoveItem}/>
         )
     })
 
