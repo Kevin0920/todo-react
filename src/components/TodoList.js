@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from './Todo';
 
 const TodoList = ({ lists, onRemoveItem }) => {
-    console.log(onRemoveItem);
+    // console.log(onRemoveItem);
 
     const listDetail = lists.map(list => {
         return (
